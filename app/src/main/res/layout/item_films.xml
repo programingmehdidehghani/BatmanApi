@@ -4,67 +4,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="8dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/card_background"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp">
+        android:orientation="horizontal"
+        android:background="@color/card_background"
+        android:padding="8dp">
 
-        <TextView
-            android:id="@+id/id_in_item_todo"
+        <ImageView
+            android:id="@+id/iv_poster_in_item_film"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:layout_margin="4dp"
+            android:src="@drawable/ic_launcher_background" />
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="@font/iran_sans"
-            app:layout_constraintEnd_toStartOf="@+id/complete_in_item_todo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/title_in_item_todo"
-            app:layout_constraintVertical_bias="0.5"
-            />
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/complete_in_item_todo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:fontFamily="@font/iran_sans"
-            android:layout_marginStart="12dp"
-            app:layout_constraintStart_toEndOf="@+id/id_in_item_todo"
-            app:layout_constraintTop_toTopOf="@+id/id_in_item_todo"
-            app:layout_constraintBottom_toBottomOf="@+id/id_in_item_todo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.5"
-            />
+            <TextView
+                android:id="@+id/txt_title_in_item_film"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/iran_sans"
+                android:textSize="18sp"
+                android:text="@string/app_name"
+                android:textStyle="bold"
+                android:textColor="@android:color/black" />
 
+            <TextView
+                android:id="@+id/txt_year_in_item_film"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/iran_sans"
+                android:text="@string/app_name"
+                android:textSize="16sp"
+                android:textColor="@android:color/darker_gray" />
 
-        <TextView
-            android:id="@+id/title_in_item_todo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:fontFamily="@font/iran_sans"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_in_item_todo"
-            app:layout_constraintVertical_bias="0.5"
-            />
+            <TextView
+                android:id="@+id/txt_type_in_item_film"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/iran_sans"
+                android:text="@string/app_name"
+                android:textSize="16sp"
+                android:textColor="@android:color/darker_gray" />
 
+        </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
