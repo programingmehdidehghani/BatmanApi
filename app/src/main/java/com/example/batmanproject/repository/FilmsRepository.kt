@@ -6,5 +6,5 @@ import javax.inject.Inject
 class FilmsRepository @Inject constructor(
     private val apiService: ApiService
 ) {
-    suspend fun getConstant() = apiService.getFilms()
+    suspend fun getFilms() = apiService.getFilms()
 }

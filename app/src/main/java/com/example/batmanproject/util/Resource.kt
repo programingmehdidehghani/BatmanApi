@@ -1,11 +1,10 @@
 package com.example.batmanproject.util
 
-sealed class Resource<T>(
-    val data : T? = null,
-    val message : String? = null
-) {
+sealed class Resource<out T: Any>{
 
-    class Success<T>(data: T) : Resource<T> (data)
-    class Error<T>(message: String , data: T? = null) : Resource<T>(data , message)
-    class Loading<T> : Resource<T>()
+    object Loading: Resource<Nothing>()
+
+    data class Success<out T:Any>(val data: T): Resource<T>()
+
+    data class Error(val errorMessage: String): Resource<Nothing>()
 }

@@ -29,10 +29,10 @@ object AppModule {
             .create()
     }
 
-    @Provides
+  /*  @Provides
     @Singleton
     fun provideApplication(@ApplicationContext appContext: Context): Application {
         return appContext as Application
-    }
+    }*/
 
 }
