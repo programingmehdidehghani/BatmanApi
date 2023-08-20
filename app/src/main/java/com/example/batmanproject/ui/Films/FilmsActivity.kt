@@ -1,10 +1,10 @@
-package com.example.batmanproject.ui
+package com.example.batmanproject.ui.Films
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.batmanproject.R
 
-class MainActivity : AppCompatActivity() {
+class FilmsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
