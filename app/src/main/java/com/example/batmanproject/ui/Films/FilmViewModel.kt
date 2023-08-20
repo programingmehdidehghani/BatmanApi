@@ -14,6 +14,7 @@ import com.example.batmanproject.util.Resource
 import com.example.batmanproject.util.hasInternetConnection
 import com.example.batmanproject.util.toast
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -30,7 +31,7 @@ class FilmViewModel @Inject constructor(
     val getFilms: LiveData<Resource<Films>> = _getFilms
 
 
-    fun films() = viewModelScope.launch {
+    fun films() = viewModelScope.launch (Dispatchers.IO) {
         resultFilms()
     }
 
@@ -41,19 +42,20 @@ class FilmViewModel @Inject constructor(
             if (hasInternetConnection<MyApp>()) {
                 val response = repository.getFilms()
                 if (response.isSuccessful) {
-                    Log.i("Constant","error is  ${response.body()!!}")
+                    Log.i("Films","success is  ${response.body()!!}")
                     _getFilms.postValue(Resource.Success(response.body()!!))
+                    repository.insert(response.body()!!.Search)
                 }
             } else {
                 _getFilms.postValue(Resource.Error("No Internet Connection.!"))
             }
         } catch (e: HttpException) {
-            Log.i("Constant","error is exception ${e.message()}")
+            Log.i("Films","error is exception ${e.message()}")
             _getFilms.postValue(Resource.Error(e.message()))
         } catch (t: Throwable) {
             when (t) {
                 is IOException -> {
-                    Log.i("Constant","error is exception  ${t.message}")
+                    Log.i("Films","error is exception  ${t.message}")
                     _getFilms.postValue(Resource.Error(t.message!!))
                 }
             }
