@@ -13,4 +13,6 @@ class FilmsRepository @Inject constructor(
 
     suspend fun insert (search: List<Search>) = db.getRunDao().insertArticle(search)
 
+    fun getFilmsDB () = db.getRunDao().getAllFilmsDB()
+
 }

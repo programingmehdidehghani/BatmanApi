@@ -2,11 +2,14 @@ package com.example.batmanproject.di
 
 import android.app.Application
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.example.batmanproject.api.ApiService
 import com.example.batmanproject.db.BatmanDB
 import com.example.batmanproject.util.Constant.Companion.BASE_URL
 import com.example.batmanproject.util.Constant.Companion.DATABASE_NAME
+import com.example.batmanproject.util.Constant.Companion.SHARED_PREFERENCES_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,5 +44,10 @@ object AppModule {
         BatmanDB::class.java,
         DATABASE_NAME
     ).build()
+
+    @Singleton
+    @Provides
+    fun providesSharedPreferences(@ApplicationContext app: Context): SharedPreferences =
+        app.getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE)
 
 }
