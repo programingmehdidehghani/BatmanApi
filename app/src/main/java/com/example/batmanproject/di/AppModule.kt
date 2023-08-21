@@ -9,7 +9,6 @@ import com.example.batmanproject.api.ApiService
 import com.example.batmanproject.db.BatmanDB
 import com.example.batmanproject.util.Constant.Companion.BASE_URL
 import com.example.batmanproject.util.Constant.Companion.DATABASE_NAME
-import com.example.batmanproject.util.Constant.Companion.SHARED_PREFERENCES_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

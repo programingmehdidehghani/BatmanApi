@@ -1,355 +1,339 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="12dp"
-    android:layout_marginStart="12dp"
-    android:layout_marginEnd="12dp"
-    android:layout_marginTop="12dp"
-    android:layout_marginBottom="12dp"
+    android:background="@drawable/background_with_radius"
     android:padding="8dp"
-    app:cardElevation="4dp"
-    app:cardUseCompatPadding="true">
+    android:layout_margin="4dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/card_background"
+    <ImageView
+        android:id="@+id/iv_poster_in_detail_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_margin="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_title_in_detail_activity"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/iran_sans"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_poster_in_detail_activity" />
 
-        <ImageView
-            android:id="@+id/iv_poster_in_detail_activity"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_margin="4dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+        android:id="@+id/txt_rated_in_detail_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/iran_sans"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_title_in_detail_activity" />
 
-        <TextView
-            android:id="@+id/txt_title_in_detail_activity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:textColor="@android:color/black"
-            android:layout_marginStart="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_poster_in_detail_activity"/>
+    <TextView
+        android:id="@+id/txt_year_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/iran_sans"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_rated_in_detail_activity" />
 
-        <TextView
-            android:id="@+id/txt_rated_in_detail_activity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:layout_marginStart="8dp"
-            android:textSize="14sp"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/txt_title_in_detail_activity"
-            app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/txt_dash_middle_year_released_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/iran_sans"
+        android:text="-"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_year_in_detail_activity"
+        app:layout_constraintStart_toEndOf="@+id/txt_year_in_detail_activity"
+        app:layout_constraintTop_toTopOf="@+id/txt_year_in_detail_activity" />
 
-        <TextView
-            android:id="@+id/txt_year_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:textSize="14sp"
-            android:layout_marginStart="8dp"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/txt_rated_in_detail_activity"
-            app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/txt_released_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/iran_sans"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_year_in_detail_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_dash_middle_year_released_in_detail_activity"
+        app:layout_constraintTop_toTopOf="@+id/txt_year_in_detail_activity" />
 
-        <TextView
-            android:id="@+id/txt_dash_middle_year_released_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:text="-"
-            android:layout_marginStart="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toTopOf="@+id/txt_year_in_detail_activity"
-            app:layout_constraintBottom_toBottomOf="@+id/txt_year_in_detail_activity"
-            app:layout_constraintStart_toEndOf="@+id/txt_year_in_detail_activity"
-            />
-
-        <TextView
-            android:id="@+id/txt_released_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:layout_marginStart="8dp"
-            android:textSize="14sp"
-            android:textColor="@android:color/black"
-            app:layout_constraintStart_toEndOf="@+id/txt_dash_middle_year_released_in_detail_activity"
-            app:layout_constraintTop_toTopOf="@+id/txt_year_in_detail_activity"
-            app:layout_constraintBottom_toBottomOf="@+id/txt_year_in_detail_activity"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/txt_run_time_in_detail_activity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:layout_marginStart="8dp"
-            android:textSize="14sp"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/txt_year_in_detail_activity"
-            app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/txt_run_time_in_detail_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/iran_sans"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_year_in_detail_activity" />
 
 
-        <TextView
-            android:id="@+id/txt_genre_in_detail_activity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:textSize="14sp"
-            android:layout_marginStart="8dp"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/txt_run_time_in_detail_activity"
-            app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/txt_genre_in_detail_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/iran_sans"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_run_time_in_detail_activity" />
 
-        <TextView
-            android:id="@+id/txt_name_director_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:layout_marginStart="8dp"
-            android:text="@string/director"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/txt_genre_in_detail_activity"
-            app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/txt_name_director_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/iran_sans"
+        android:text="@string/director"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_genre_in_detail_activity" />
 
-        <TextView
-            android:id="@+id/txt_Director_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:textSize="14sp"
-            android:layout_marginStart="8dp"
-            android:textColor="@android:color/black"
-            app:layout_constraintStart_toEndOf="@+id/txt_name_director_in_detail_activity"
-            app:layout_constraintTop_toTopOf="@+id/txt_name_director_in_detail_activity"
-            app:layout_constraintBottom_toTopOf="@+id/txt_name_writers_in_detail_activity"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-
-        <TextView
-            android:id="@+id/txt_name_writers_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:layout_marginStart="8dp"
-            android:text="@string/writer"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/txt_name_director_in_detail_activity"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <TextView
-            android:id="@+id/txt_writers_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:textSize="14sp"
-            android:layout_marginStart="8dp"
-            android:textColor="@android:color/black"
-            app:layout_constraintStart_toEndOf="@+id/txt_name_writers_in_detail_activity"
-            app:layout_constraintTop_toTopOf="@+id/txt_name_writers_in_detail_activity"
-            app:layout_constraintBottom_toTopOf="@+id/txt_name_actors_in_detail_activity"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/txt_name_actors_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:layout_marginStart="8dp"
-            android:text="@string/actors"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/txt_name_writers_in_detail_activity"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <TextView
-            android:id="@+id/txt_actors_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:textSize="14sp"
-            android:layout_marginStart="8dp"
-            android:textColor="@android:color/black"
-            app:layout_constraintStart_toEndOf="@+id/txt_name_actors_in_detail_activity"
-            app:layout_constraintTop_toTopOf="@+id/txt_name_actors_in_detail_activity"
-            app:layout_constraintBottom_toTopOf="@+id/txt_name_Plot_in_detail_activity"
-            app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+        android:id="@+id/txt_Director_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/iran_sans"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_writers_in_detail_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_name_director_in_detail_activity"
+        app:layout_constraintTop_toTopOf="@+id/txt_name_director_in_detail_activity" />
 
 
-        <TextView
-            android:id="@+id/txt_name_Plot_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:layout_marginStart="8dp"
-            android:text="@string/plot"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/txt_name_actors_in_detail_activity"
-            app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/txt_name_writers_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/iran_sans"
+        android:text="@string/writer"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name_director_in_detail_activity" />
 
-        <TextView
-            android:id="@+id/txt_plot_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:textSize="14sp"
-            android:layout_marginStart="8dp"
-            android:textColor="@android:color/black"
-            app:layout_constraintStart_toEndOf="@+id/txt_name_Plot_in_detail_activity"
-            app:layout_constraintTop_toTopOf="@+id/txt_name_Plot_in_detail_activity"
-            app:layout_constraintBottom_toTopOf="@+id/txt_language_in_detail_activity"
-            app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+        android:id="@+id/txt_writers_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/iran_sans"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_actors_in_detail_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_name_writers_in_detail_activity"
+        app:layout_constraintTop_toTopOf="@+id/txt_name_writers_in_detail_activity" />
 
-        <TextView
-            android:id="@+id/txt_name_language_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:text="@string/language"
-            android:layout_marginStart="8dp"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/txt_plot_in_detail_activity"
-            app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/txt_name_actors_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/iran_sans"
+        android:text="@string/actors"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name_writers_in_detail_activity" />
 
-        <TextView
-            android:id="@+id/txt_language_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:textSize="14sp"
-            android:layout_marginStart="8dp"
-            android:textColor="@android:color/black"
-            app:layout_constraintStart_toEndOf="@+id/txt_name_language_in_detail_activity"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/txt_name_country_in_detail_activity"
-            app:layout_constraintTop_toTopOf="@+id/txt_name_language_in_detail_activity"/>
-
-
-        <TextView
-            android:id="@+id/txt_name_country_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:text="@string/country"
-            android:layout_marginStart="8dp"
-            android:textColor="@android:color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_name_language_in_detail_activity"
-            />
-
-        <TextView
-            android:id="@+id/txt_country_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:textSize="14sp"
-            android:layout_marginStart="8dp"
-            android:textColor="@android:color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/txt_name_country_in_detail_activity"
-            app:layout_constraintBottom_toTopOf="@+id/txt_type_in_detail_activity"
-            app:layout_constraintStart_toEndOf="@+id/txt_name_country_in_detail_activity"
-            />
-
-        <TextView
-            android:id="@+id/txt_type_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:textSize="14sp"
-            android:layout_marginStart="8dp"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/txt_name_country_in_detail_activity"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <TextView
-            android:id="@+id/txt_dash_middle_type_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:text="-"
-            android:layout_marginStart="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toTopOf="@+id/txt_type_in_detail_activity"
-            app:layout_constraintBottom_toBottomOf="@+id/txt_type_in_detail_activity"
-            app:layout_constraintStart_toEndOf="@+id/txt_type_in_detail_activity"
-            />
-
-        <TextView
-            android:id="@+id/txt_box_office_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:textSize="14sp"
-            android:layout_marginStart="8dp"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toTopOf="@+id/txt_dash_middle_type_in_detail_activity"
-            app:layout_constraintBottom_toBottomOf="@+id/txt_dash_middle_type_in_detail_activity"
-            app:layout_constraintStart_toEndOf="@+id/txt_dash_middle_type_in_detail_activity"
-            />
-
-        <TextView
-            android:id="@+id/txt_web_site_in_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_sans"
-            android:textSize="14sp"
-            android:layout_marginStart="8dp"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/txt_type_in_detail_activity"
-            app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/txt_actors_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/iran_sans"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_plot_in_detail_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_name_actors_in_detail_activity"
+        app:layout_constraintTop_toTopOf="@+id/txt_name_actors_in_detail_activity" />
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_rating_in_detail_activity"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:visibility="gone"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/txt_web_site_in_detail_activity"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+    <TextView
+        android:id="@+id/txt_name_Plot_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/iran_sans"
+        android:text="@string/plot"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name_actors_in_detail_activity" />
+
+    <TextView
+        android:id="@+id/txt_plot_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/iran_sans"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_language_in_detail_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_name_Plot_in_detail_activity"
+        app:layout_constraintTop_toTopOf="@+id/txt_name_Plot_in_detail_activity" />
+
+    <TextView
+        android:id="@+id/txt_name_language_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/iran_sans"
+        android:text="@string/language"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_plot_in_detail_activity" />
+
+    <TextView
+        android:id="@+id/txt_language_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/iran_sans"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_name_country_in_detail_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_name_language_in_detail_activity"
+        app:layout_constraintTop_toTopOf="@+id/txt_name_language_in_detail_activity" />
 
 
-        <ProgressBar
-            android:id="@+id/progress_in_detail_film_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/txt_name_country_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/iran_sans"
+        android:text="@string/country"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name_language_in_detail_activity" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/txt_country_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/iran_sans"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_type_in_detail_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_name_country_in_detail_activity"
+        app:layout_constraintTop_toTopOf="@+id/txt_name_country_in_detail_activity" />
+
+    <TextView
+        android:id="@+id/txt_type_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/iran_sans"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name_country_in_detail_activity" />
+
+    <TextView
+        android:id="@+id/txt_dash_middle_type_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/iran_sans"
+        android:text="-"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_type_in_detail_activity"
+        app:layout_constraintStart_toEndOf="@+id/txt_type_in_detail_activity"
+        app:layout_constraintTop_toTopOf="@+id/txt_type_in_detail_activity" />
+
+    <TextView
+        android:id="@+id/txt_box_office_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/iran_sans"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_dash_middle_type_in_detail_activity"
+        app:layout_constraintStart_toEndOf="@+id/txt_dash_middle_type_in_detail_activity"
+        app:layout_constraintTop_toTopOf="@+id/txt_dash_middle_type_in_detail_activity" />
+
+    <TextView
+        android:id="@+id/txt_web_site_in_detail_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/iran_sans"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_type_in_detail_activity" />
 
 
-</androidx.cardview.widget.CardView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_rating_in_detail_activity"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_web_site_in_detail_activity" />
+
+
+    <ProgressBar
+        android:id="@+id/progress_in_detail_film_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
