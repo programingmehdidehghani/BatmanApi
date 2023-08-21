@@ -86,7 +86,6 @@ class FilmsActivity : AppCompatActivity() , OnItemClickCallback {
     }
 
     private fun getAllFilms(){
-        filmViewModel.getFilms.removeObservers(this)
         filmViewModel.films()
         filmViewModel.getFilms.observe(this,Observer { response ->
             when (response) {

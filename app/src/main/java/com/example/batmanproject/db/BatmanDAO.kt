@@ -18,10 +18,10 @@ interface BatmanDAO {
     fun getAllFilmsDB() : LiveData<List<Search>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertDetailFilm(article: List<DetailFilm>)
+    suspend fun insertDetailFilm(article: DetailFilm)
 
-    @Query("SELECT * FROM detailFilm")
-    fun getDetailFilmDB() : LiveData<List<DetailFilm>>
+    @Query("SELECT * FROM detailFilm WHERE imdbID = :imdbID")
+    fun getDetailFilmDB(imdbID: String) : LiveData<DetailFilm>
 
 
 }

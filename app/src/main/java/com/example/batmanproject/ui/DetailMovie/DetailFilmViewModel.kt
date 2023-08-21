@@ -37,17 +37,17 @@ class DetailFilmViewModel @Inject constructor(
         try {
             val response = repository.getDetailFilms(imdbID = imdbID)
             if (response.isSuccessful) {
-                Log.i("Films", "success is  ${response.body()!!}")
+                Log.i("DetailFilms", "success is  ${response.body()!!}")
                 _getDetailFilm.postValue(Resource.Success(response.body()!!))
-                repository.insert(response.body()!!.Search)
+                repository.insertDetailFilm(response.body()!!)
             }
         } catch (e: HttpException) {
-            Log.i("Films","error is exception ${e.message()}")
+            Log.i("DetailFilms","error is exception ${e.message()}")
             _getDetailFilm.postValue(Resource.Error(e.message()))
         } catch (t: Throwable) {
             when (t) {
                 is IOException -> {
-                    Log.i("Films","error is exception  ${t.message}")
+                    Log.i("DetailFilms","error is exception  ${t.message}")
                     _getDetailFilm.postValue(Resource.Error(t.message!!))
                 }
             }
@@ -55,7 +55,7 @@ class DetailFilmViewModel @Inject constructor(
     }
 
 
-    fun getFilmsDB() : LiveData<List<Search>> {
-        return repository.getFilmsDB()
+    fun getFilmsDB(imdbID: String) : LiveData<DetailFilm> {
+        return repository.getDetailFilmsDB(imdbID)
     }
 }
