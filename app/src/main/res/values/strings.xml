@@ -6,5 +6,7 @@
     <string name="writer">Writer:</string>
     <string name="actors">Actors:</string>
     <string name="plot">Plot:</string>
+    <string name="language">Language:</string>
+    <string name="country">Country:</string>
 
 </resources>

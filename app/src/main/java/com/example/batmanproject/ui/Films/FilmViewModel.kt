@@ -15,7 +15,6 @@ import com.example.batmanproject.model.Search
 import com.example.batmanproject.repository.FilmsRepository
 import com.example.batmanproject.util.Constant
 import com.example.batmanproject.util.Resource
-import com.example.batmanproject.util.hasInternetConnection
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

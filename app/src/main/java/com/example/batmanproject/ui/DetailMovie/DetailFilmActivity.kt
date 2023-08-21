@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.batmanproject.R
 import com.example.batmanproject.adapter.FilmsAdapter
@@ -15,6 +16,7 @@ import com.example.batmanproject.databinding.ActivityDetailFilmBinding
 import com.example.batmanproject.databinding.ActivityFilmsBinding
 import com.example.batmanproject.model.DetailFilm
 import com.example.batmanproject.ui.Films.FilmViewModel
+import com.example.batmanproject.util.ImageLoader
 import com.example.batmanproject.util.InternetUtils
 import com.example.batmanproject.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,7 +50,7 @@ class DetailFilmActivity : AppCompatActivity() {
                         setDataOnView(response.data.Title,response.data.Year,response.data.Rated,response.data.Released
                         ,response.data.BoxOffice,response.data.Actors,response.data.Country,response.data.Director,
                         response.data.Genre,response.data.Language,response.data.Plot,response.data.Runtime,
-                        response.data.Type,response.data.Website,response.data.Writer,response.data.Ratings)
+                        response.data.Type,response.data.Website,response.data.Writer,response.data.Ratings,response.data.Poster)
                     }
                     is Resource.Error -> {
                         Toast.makeText(
@@ -65,10 +67,19 @@ class DetailFilmActivity : AppCompatActivity() {
         } else {
             detailFilmViewModel.getDetailFilmsDB(imdbID).observe(this, Observer { filmDB ->
                 Log.i("internet","is off")
-                setDataOnView(filmDB.Title,filmDB.Year,filmDB.Rated,filmDB.Released
-                    ,filmDB.BoxOffice,filmDB.Actors,filmDB.Country,filmDB.Director,
-                    filmDB.Genre,filmDB.Language,filmDB.Plot,filmDB.Runtime,
-                    filmDB.Type,filmDB.Website,filmDB.Writer,filmDB.Ratings)
+                hideProgress()
+                if (filmDB != null){
+                    setDataOnView(filmDB.Title,filmDB.Year,filmDB.Rated,filmDB.Released
+                        ,filmDB.BoxOffice,filmDB.Actors,filmDB.Country,filmDB.Director,
+                        filmDB.Genre,filmDB.Language,filmDB.Plot,filmDB.Runtime,
+                        filmDB.Type,filmDB.Website,filmDB.Writer,filmDB.Ratings,filmDB.Poster)
+                }else {
+                    Toast.makeText(
+                        applicationContext,
+                        "there is no data please turn on your internet", Toast.LENGTH_SHORT
+                    ).show()
+                }
+
             })
         }
 
@@ -78,7 +89,7 @@ class DetailFilmActivity : AppCompatActivity() {
     private fun setDataOnView(title: String,year: String
                               ,rated: String,release: String,boxOffice: String,actors: String
     ,country: String,director: String,genre: String,language: String,plot: String,
-    runTime: String,type: String,webSite: String,writers: String,rating: List<DetailFilm.Rating>){
+    runTime: String,type: String,webSite: String,writers: String,rating: List<DetailFilm.Rating>,poster: String){
         viewBinding.txtTitleInDetailActivity.text = title
         viewBinding.txtYearInDetailActivity.text = year
         viewBinding.txtRatedInDetailActivity.text = rated
@@ -94,12 +105,16 @@ class DetailFilmActivity : AppCompatActivity() {
         viewBinding.txtTypeInDetailActivity.text = type
         viewBinding.txtWebSiteInDetailActivity.text = webSite
         viewBinding.txtWritersInDetailActivity.text = writers
+        ImageLoader.loadImage(
+            viewBinding.ivPosterInDetailActivity,
+            poster
+        )
         rateDetailFilmAdapter.updateList(rating)
     }
 
     private fun setUpFilmsRecyclerView(){
         var layoutManager
-                = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+                = LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false)
         viewBinding.rvRatingInDetailActivity.apply {
             this.layoutManager = layoutManager
             adapter = rateDetailFilmAdapter
