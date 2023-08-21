@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.batmanproject.MyApp
 import com.example.batmanproject.R
@@ -27,9 +28,7 @@ import javax.inject.Inject
 @HiltViewModel
 class FilmViewModel @Inject constructor(
     private val repository: FilmsRepository,
-    application: Application,
-    private val sharedPref: SharedPreferences
-) : AndroidViewModel(application){
+) : ViewModel(){
 
     private val _getFilms = MutableLiveData<Resource<Films>>()
     val getFilms: LiveData<Resource<Films>> = _getFilms
@@ -43,38 +42,20 @@ class FilmViewModel @Inject constructor(
     private suspend fun resultFilms(){
         _getFilms.postValue(Resource.Loading)
         try {
-            if (hasInternetConnection<MyApp>()) {
-                val response = repository.getFilms()
-                if (response.isSuccessful) {
-                    Log.i("Films","success is  ${response.body()!!}")
-                    _getFilms.postValue(Resource.Success(response.body()!!))
-                    repository.insert(response.body()!!.Search)
-                    sharedPref.edit()
-                        .putBoolean(Constant.IS_INTERNET, false)
-                        .apply()
-                }
-            } else {
-                // No Internet
-                _getFilms.postValue(Resource.Error("No Internet"))
-                sharedPref.edit()
-                    .putBoolean(Constant.IS_INTERNET, true)
-                    .apply()
-                getFilmsDB()
+            val response = repository.getFilms()
+            if (response.isSuccessful) {
+                Log.i("Films", "success is  ${response.body()!!}")
+                _getFilms.postValue(Resource.Success(response.body()!!))
+                repository.insert(response.body()!!.Search)
             }
         } catch (e: HttpException) {
             Log.i("Films","error is exception ${e.message()}")
             _getFilms.postValue(Resource.Error(e.message()))
-            sharedPref.edit()
-                .putBoolean(Constant.IS_INTERNET, false)
-                .apply()
         } catch (t: Throwable) {
             when (t) {
                 is IOException -> {
                     Log.i("Films","error is exception  ${t.message}")
                     _getFilms.postValue(Resource.Error(t.message!!))
-                    sharedPref.edit()
-                        .putBoolean(Constant.IS_INTERNET, false)
-                        .apply()
                 }
             }
         }

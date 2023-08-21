@@ -1,6 +1,11 @@
 package com.example.batmanproject.ui.Films
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.SharedPreferences
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,12 +13,14 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.batmanproject.MyApp
 import com.example.batmanproject.R
 import com.example.batmanproject.adapter.FilmsAdapter
 import com.example.batmanproject.adapter.OnItemClickCallback
 import com.example.batmanproject.databinding.ActivityFilmsBinding
 import com.example.batmanproject.util.Constant
 import com.example.batmanproject.util.Resource
+import com.example.batmanproject.util.hasInternetConnection
 import com.example.batmanproject.util.toast
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -40,33 +47,56 @@ class FilmsActivity : AppCompatActivity() , OnItemClickCallback {
         _binding = ActivityFilmsBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
         setUpFilmsRecyclerView()
-        getAllFilms()
-        viewBinding.btnUpdateDataInActivityMain.setOnClickListener {
+        if (isInternetAvailable()){
             getAllFilms()
+        } else {
+            filmViewModel.getFilmsDB().observe(this, Observer { filmDB ->
+                Log.i("internet","is off")
+                if (filmDB.isNotEmpty()){
+                    filmsAdapter.updateList(filmDB)
+                } else {
+                    toast(this,"there is no data please turn on your internet")
+                }
+                hideProgress()
+            })
         }
+    }
 
+    @SuppressLint("ObsoleteSdkInt")
+    private fun isInternetAvailable(): Boolean {
+        val connectivityManager =
+            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val networkCapabilities = connectivityManager.activeNetwork ?: return false
+            val activeNetwork =
+                connectivityManager.getNetworkCapabilities(networkCapabilities) ?: return false
+
+            return when {
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+                else -> false
+            }
+        } else {
+            @Suppress("DEPRECATION")
+            val networkInfo = connectivityManager.activeNetworkInfo
+            return networkInfo != null && networkInfo.isConnected
+        }
     }
 
     private fun getAllFilms(){
+        filmViewModel.getFilms.removeObservers(this)
         filmViewModel.films()
         filmViewModel.getFilms.observe(this,Observer { response ->
             when (response) {
                 is Resource.Success -> {
-                        Log.i("internet","is on")
-                        filmsAdapter.updateList(response.data.Search)
-
+                    Log.i("internet","is on")
+                    filmsAdapter.updateList(response.data.Search)
                     hideProgress()
                 }
                 is Resource.Error -> {
-                    isInternet = sharedPref.getBoolean(Constant.IS_INTERNET, false)
-                    if (isInternet){
-                        filmViewModel.getFilmsDB().observe(this, Observer { filmDB ->
-                            Log.i("internet","is off")
-                            filmsAdapter.updateList(filmDB)
-                        })
-                    } else {
-                        toast(this,response.errorMessage)
-                    }
+                    toast(this, response.errorMessage)
                     hideProgress()
                 }
                 is Resource.Loading -> {
