@@ -2,6 +2,7 @@ package com.example.batmanproject.ui.Films
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +20,7 @@ import com.example.batmanproject.R
 import com.example.batmanproject.adapter.FilmsAdapter
 import com.example.batmanproject.adapter.OnItemClickCallback
 import com.example.batmanproject.databinding.ActivityFilmsBinding
+import com.example.batmanproject.ui.DetailMovie.DetailFilmActivity
 import com.example.batmanproject.util.Constant
 import com.example.batmanproject.util.Resource
 import com.example.batmanproject.util.hasInternetConnection
@@ -32,12 +35,6 @@ class FilmsActivity : AppCompatActivity() , OnItemClickCallback {
     private val filmViewModel: FilmViewModel by viewModels()
 
     private var filmsAdapter = FilmsAdapter(this)
-
-    @Inject
-    lateinit var sharedPref: SharedPreferences
-
-    private var isInternet: Boolean = false
-
 
 
     private var _binding: ActivityFilmsBinding? = null
@@ -55,7 +52,10 @@ class FilmsActivity : AppCompatActivity() , OnItemClickCallback {
                 if (filmDB.isNotEmpty()){
                     filmsAdapter.updateList(filmDB)
                 } else {
-                    toast(this,"there is no data please turn on your internet")
+                    Toast.makeText(
+                        applicationContext,
+                        "there is no data please turn on your internet", Toast.LENGTH_SHORT
+                    ).show()
                 }
                 hideProgress()
             })
@@ -96,7 +96,10 @@ class FilmsActivity : AppCompatActivity() , OnItemClickCallback {
                     hideProgress()
                 }
                 is Resource.Error -> {
-                    toast(this, response.errorMessage)
+                    Toast.makeText(
+                        applicationContext,
+                        response.errorMessage, Toast.LENGTH_SHORT
+                    ).show()
                     hideProgress()
                 }
                 is Resource.Loading -> {
@@ -133,5 +136,8 @@ class FilmsActivity : AppCompatActivity() , OnItemClickCallback {
     }
 
     override fun onItemClick(imdbID: String) {
+        val intent = Intent(this@FilmsActivity, DetailFilmActivity::class.java)
+        intent.putExtra("imdbID",imdbID)
+        startActivity(intent)
     }
 }

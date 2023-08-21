@@ -1,15 +1,15 @@
 package com.example.batmanproject.repository
 
 import com.example.batmanproject.api.ApiService
-import com.example.batmanproject.db.BatmanDB
 import com.example.batmanproject.model.Search
 import javax.inject.Inject
 
-class FilmsRepository @Inject constructor(
-    private val apiService: ApiService,
-    private val db: BatmanDB
+class DetailFilmRepository @Inject constructor(
+    private val apiService: ApiService
 ) {
-    suspend fun getFilms() = apiService.getFilms()
+
+    suspend fun getDetailFilms(imdbID: String) = apiService.getFilmDetails(imdbID = imdbID)
+
 
     suspend fun insert (search: List<Search>) = db.getRunDao().insertFilms(search)
 

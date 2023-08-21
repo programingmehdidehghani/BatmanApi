@@ -45,9 +45,5 @@ object AppModule {
         DATABASE_NAME
     ).build()
 
-    @Singleton
-    @Provides
-    fun providesSharedPreferences(@ApplicationContext app: Context): SharedPreferences =
-        app.getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE)
 
 }
