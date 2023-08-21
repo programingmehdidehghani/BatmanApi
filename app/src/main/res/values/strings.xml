@@ -2,5 +2,9 @@
     <string name="app_name">BatmanProject</string>
     <string name="toolbar_all_film">Films</string>
     <string name="toolbar_detail_film">Detail Film</string>
+    <string name="director">Director:</string>
+    <string name="writer">Writer:</string>
+    <string name="actors">Actors:</string>
+    <string name="plot">Plot:</string>
 
 </resources>
