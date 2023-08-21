@@ -55,7 +55,7 @@ class DetailFilmViewModel @Inject constructor(
     }
 
 
-    fun getFilmsDB(imdbID: String) : LiveData<DetailFilm> {
+    fun getDetailFilmsDB(imdbID: String) : LiveData<DetailFilm> {
         return repository.getDetailFilmsDB(imdbID)
     }
 }

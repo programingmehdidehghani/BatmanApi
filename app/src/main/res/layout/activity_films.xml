@@ -39,17 +39,6 @@
         tools:ignore="NotSibling" />
 
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_update_data_in_activity_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_btn_update_list"
-        android:visibility="gone"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
     <ProgressBar
         android:id="@+id/progress_in_activity_"
         android:layout_width="wrap_content"

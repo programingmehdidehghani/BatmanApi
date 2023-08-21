@@ -10,6 +10,7 @@ import com.example.batmanproject.R
 import com.example.batmanproject.databinding.ActivityDetailFilmBinding
 import com.example.batmanproject.databinding.ActivityFilmsBinding
 import com.example.batmanproject.ui.Films.FilmViewModel
+import com.example.batmanproject.util.InternetUtils
 import com.example.batmanproject.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,21 +30,29 @@ class DetailFilmActivity : AppCompatActivity() {
         _binding = ActivityDetailFilmBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
         imdbID = intent.getStringExtra("imdbID").toString()
-        detailFilmViewModel.detailFilm(imdbID)
-        detailFilmViewModel.getDetailFilm.observe(this, Observer { response ->
-            when (response) {
-                is Resource.Success -> {
+        if (InternetUtils.isInternetAvailable(this)){
+            detailFilmViewModel.detailFilm(imdbID)
+            detailFilmViewModel.getDetailFilm.observe(this, Observer { response ->
+                when (response) {
+                    is Resource.Success -> {
+                    }
+                    is Resource.Error -> {
+                        Toast.makeText(
+                            applicationContext,
+                            response.errorMessage, Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    is Resource.Loading -> {
+                    }
                 }
-                is Resource.Error -> {
-                    Toast.makeText(
-                        applicationContext,
-                        response.errorMessage, Toast.LENGTH_SHORT
-                    ).show()
-                }
-                is Resource.Loading -> {
-                }
-            }
-        })
+            })
+        } else {
+            detailFilmViewModel.getDetailFilmsDB(imdbID).observe(this, Observer { filmDB ->
+                Log.i("internet","is off")
+
+            })
+        }
+
 
     }
 

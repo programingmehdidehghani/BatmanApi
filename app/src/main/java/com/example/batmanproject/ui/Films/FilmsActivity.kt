@@ -22,9 +22,8 @@ import com.example.batmanproject.adapter.OnItemClickCallback
 import com.example.batmanproject.databinding.ActivityFilmsBinding
 import com.example.batmanproject.ui.DetailMovie.DetailFilmActivity
 import com.example.batmanproject.util.Constant
+import com.example.batmanproject.util.InternetUtils
 import com.example.batmanproject.util.Resource
-import com.example.batmanproject.util.hasInternetConnection
-import com.example.batmanproject.util.toast
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -44,8 +43,27 @@ class FilmsActivity : AppCompatActivity() , OnItemClickCallback {
         _binding = ActivityFilmsBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
         setUpFilmsRecyclerView()
-        if (isInternetAvailable()){
-            getAllFilms()
+        if (InternetUtils.isInternetAvailable(this)){
+            filmViewModel.films()
+            filmViewModel.getFilms.observe(this,Observer { response ->
+                when (response) {
+                    is Resource.Success -> {
+                        Log.i("internet","is on")
+                        filmsAdapter.updateList(response.data.Search)
+                        hideProgress()
+                    }
+                    is Resource.Error -> {
+                        Toast.makeText(
+                            applicationContext,
+                            response.errorMessage, Toast.LENGTH_SHORT
+                        ).show()
+                        hideProgress()
+                    }
+                    is Resource.Loading -> {
+                        showProgress()
+                    }
+                }
+            })
         } else {
             filmViewModel.getFilmsDB().observe(this, Observer { filmDB ->
                 Log.i("internet","is off")
@@ -60,52 +78,6 @@ class FilmsActivity : AppCompatActivity() , OnItemClickCallback {
                 hideProgress()
             })
         }
-    }
-
-    @SuppressLint("ObsoleteSdkInt")
-    private fun isInternetAvailable(): Boolean {
-        val connectivityManager =
-            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val networkCapabilities = connectivityManager.activeNetwork ?: return false
-            val activeNetwork =
-                connectivityManager.getNetworkCapabilities(networkCapabilities) ?: return false
-
-            return when {
-                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-                else -> false
-            }
-        } else {
-            @Suppress("DEPRECATION")
-            val networkInfo = connectivityManager.activeNetworkInfo
-            return networkInfo != null && networkInfo.isConnected
-        }
-    }
-
-    private fun getAllFilms(){
-        filmViewModel.films()
-        filmViewModel.getFilms.observe(this,Observer { response ->
-            when (response) {
-                is Resource.Success -> {
-                    Log.i("internet","is on")
-                    filmsAdapter.updateList(response.data.Search)
-                    hideProgress()
-                }
-                is Resource.Error -> {
-                    Toast.makeText(
-                        applicationContext,
-                        response.errorMessage, Toast.LENGTH_SHORT
-                    ).show()
-                    hideProgress()
-                }
-                is Resource.Loading -> {
-                    showProgress()
-                }
-            }
-        })
     }
 
 
